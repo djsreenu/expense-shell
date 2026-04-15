@@ -45,8 +45,8 @@ VALIDATE $? "Install nodejs"
 id expense &>>LOG_FILE
 if [ $? -ne 0 ]
 then
-    echo "Expense user is not exist $G creating .. $N"
-    useradd expense  &>>s$LOG_FILE
+    echo -e "Expense user is not exist $G creating .. $N"
+    useradd expense  &>>$LOG_FILE
     VALIDATE $? "Creating Expense user"
 else
     echo -e "Expnese user already exists.. $Y SKIPPING...$N"
@@ -62,7 +62,7 @@ rm -rf /app/*
 unzip /tmp/backend.zip &>>LOG_FILE
 VALIDATE $? "Extracting application code"
 
-nmp install &>>LOG_FILE
+npm install &>>LOG_FILE
 VALIDATE $? "Install dependency"
 cp /home/ec2-user/expense-shell/backend.service /etc/systemd/system/backend.service
 
